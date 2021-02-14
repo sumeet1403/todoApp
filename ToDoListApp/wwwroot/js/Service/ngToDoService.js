@@ -1,0 +1,2 @@
+﻿angularApp.service('ToDoService', function ($http) {    var getTasks = function () {        return $http({ method: "GET", url: "/api/TodoItems", dataType: "json" });    };    var addTask = function (taskDetails) {        return $http({ method: "POST", url: "/api/TodoItems", data: taskDetails });    };    var updateTask = function (taskDetails) {        return $http({ method: "PUT", url: "/api/TodoItems/" + taskDetails.id, data: taskDetails });    };    return {
+        getTasks: getTasks,        addTask: addTask,        updateTask: updateTask    }});

@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
+<html ng-app="angularApp">
+
+<head>
+    <meta charset="utf-8" />
+    <title>AngularJS Plunker</title>
+    <script>document.write('<base href="' + document.location + '" />');</script>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.js"></script>
+    <script type="text/javascript" src="~/js/app.js"></script>
+    <script type="text/javascript" src="~/js/Controller/ngTodoController.js"></script>
+    <script type="text/javascript" src="~/js/Service/ngToDoService.js"></script>
+    <script type="text/javascript" src="~/css/site.css">
+    </script>
+</head>
+
+<body>
+    <div>
+        <h1>Todo List</h1>
+        <div ng-controller="TodoCtrl">
+            <h2>You have {{remaining()}} tasks remaining of the total {{todos.length}} tasks</h2>
+            <ul class="unstyled">
+                <li ng-repeat="todo in todos">
+                    <input type="checkbox" ng-model="todo.isComplete" ng-change="updateToDoTask(todo)">
+                    <span class="done-{{todo.isComplete}}">{{todo.name}}</span>
+                </li>
+            </ul>
+            <form name="myForm">
+                <input name="taskField" type="text" ng-model="todoText" size="30"
+                       placeholder="Enter new task please" ng-required="true">
+                <input class="btn-primary" type="button" value="Add" ng-click="addToDoTask()" ng-disabled="myForm.taskField.$invalid">
+                <span ng-show="myForm.taskField.$invalid" class="req">
+                    This is the required field.
+                </span>
+            </form>
+
+        </div>
+    </div>
+</body>
+</html>
